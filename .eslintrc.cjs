@@ -36,6 +36,7 @@ module.exports = {
         "argsIgnorePattern": "^_"
       }
     ],
+    "unused-imports/no-unused-imports": "warn",
     '@typescript-eslint/no-non-null-assertion': 'off',
   },
 }
