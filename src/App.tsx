@@ -1,20 +1,9 @@
-import { useEffect } from 'react'
-import api from './app/services/api'
+import { GalleryPage } from "./app/pages/GalleryPage";
 
 function App() {  
-  const getImages = async() => {
-    await api.get('/3/gallery')
-    .then((response) => console.log(response.data))
-  }
-
-  useEffect(() => {
-    getImages()
-  }, [])
-  
-
   return (
     <>
-      app
+      <GalleryPage />
     </>
   )
 }

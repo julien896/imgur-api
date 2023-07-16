@@ -7,12 +7,13 @@ import { Provider } from 'react-redux'
 import store from './app/lib/store' 
 
 import App from './App.tsx'
+import { Fallback } from './app/components/base/ErrorFallback/ErrorFallback.tsx'
 import './styles/index.scss'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}> 
-      <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <ErrorBoundary FallbackComponent={Fallback}>
         <App />
       </ErrorBoundary>  
     </Provider>

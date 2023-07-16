@@ -2,7 +2,7 @@
 @import './variables';
 
 :root {
-    font-family: 'Mukta, sans-serif';
+    font-family: 'Mukta', sans-serif;
     line-height: 1.5;
     font-weight: 400;
   
@@ -28,6 +28,8 @@
   
   body {
     margin: 0;
+    background-color: $primary;
+    padding: 0 40px;
     display: flex;
     place-items: center;
     min-width: 320px;
@@ -45,8 +47,7 @@
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
+    font-family: 'Mukta', sans-serif;
     cursor: pointer;
     transition: border-color 0.25s;
   }
