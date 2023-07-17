@@ -1,6 +1,6 @@
 import { I_Image } from "./Image";
 
-interface IGallery {
+interface IPost {
   id: string;
   ad_type: number;
   ad_url: string;
@@ -29,7 +29,7 @@ interface IGallery {
   section: string;
 }
   
-export class Gallery {
+export class Post {
     id: string;
     ad_type: number;
     ad_url: string;
@@ -57,7 +57,7 @@ export class Gallery {
     score: number;
     section: string;  
 
-  constructor(args: IGallery) {
+  constructor(args: IPost) {
     this.id = args.id;
     this.ad_type = args.ad_type;
     this.ad_url = args.ad_url;

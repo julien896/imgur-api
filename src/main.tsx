@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Provider } from 'react-redux'
 
-import store from './app/lib/store' 
+import { store } from './app/lib/store/store' 
 
 import App from './App.tsx'
 import { Fallback } from './app/components/base/ErrorFallback/ErrorFallback.tsx'

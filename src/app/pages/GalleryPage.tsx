@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react'
-import api from '../services/api'
-import { Gallery } from '../models/Gallery'
+import { Post } from '../models/Post';
 import { GalleryComponent } from '../components/GalleryComponent/GalleryComponent'
 import { Masonry } from '@mui/lab'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts } from '../lib/slices/gallerySlice'
+import { AppDispatch } from '../lib/store/store';
 
 export const GalleryPage = () => {
-  const [results, setResults] = useState<Gallery[]>([])
+  const [results, setResults] = useState<Post[]>([])
 
-  const getImages = async() => {
-    await api.get('/3/gallery/hot/viral/day/1?showViral=true')
-    .then((response) => { 
-      setResults(response.data.data) 
-    })
-  }
-  
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector((state: any) => state.gallery.posts);
+  const status = useSelector((state: any) => state.gallery.status);
+
   useEffect(() => {
-    getImages()
-  }, [])
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
+  console.log("posts", posts)
+  console.log('status', status)
 
   return (
    <GalleryComponent>
     <Masonry columns={3} spacing={2}>
-      {results.length > 0 && results.map((r: Gallery) => (
+      {results.length > 0 && results.map((r: Post) => (
         <GalleryComponent.Card key={r.id} image={r.images && r.images.length > 0 ? r.images[0].link : ''} />
       ))}
     </Masonry>
