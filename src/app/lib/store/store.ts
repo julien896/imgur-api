@@ -6,6 +6,7 @@ export const store = configureStore({
     gallery: galleryReducer,
   } 
 })
+export type GalleryState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 

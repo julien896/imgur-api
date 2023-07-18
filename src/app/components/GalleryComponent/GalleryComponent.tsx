@@ -1,4 +1,5 @@
-import { Card } from "./Card/Card"
+import { BaseFiltersComponent } from "./BaseFilters/BaseFiltersComponent"
+import { CardComponent } from "./Card/CardComponent"
 
 export const GalleryComponent = ({ 
     children
@@ -10,5 +11,7 @@ export const GalleryComponent = ({
     </div>
 )
 
-GalleryComponent.Card = Card
+GalleryComponent.Card = CardComponent
+GalleryComponent.Filters = BaseFiltersComponent
+
 

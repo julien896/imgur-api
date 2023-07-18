@@ -1,0 +1,31 @@
+.base-filters {
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 15px;
+
+    .MuiSelect-select {
+        background: white;
+    }
+
+    .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { 
+        color: $fucsia !important
+    }
+
+    .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+        background-color: $fucsia !important
+    }
+
+    .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+        color: white;
+        font-weight: 500;
+    }
+
+    .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+        color: $fucsia;
+    }
+
+    .Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: $fucsia !important;
+      }
+}

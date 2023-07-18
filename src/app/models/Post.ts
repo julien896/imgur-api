@@ -1,6 +1,6 @@
 import { I_Image } from "./Image";
 
-interface IPost {
+export interface IPost {
   id: string;
   ad_type: number;
   ad_url: string;
@@ -30,32 +30,32 @@ interface IPost {
 }
   
 export class Post {
-    id: string;
-    ad_type: number;
-    ad_url: string;
-    comment_count: number;
-    cover: string;
-    cover_height: number;
-    cover_width: number; 
-    datetime: number;
-    description: string | null;
-    downs: number; 
-    favorite: boolean
-    favorite_count: number; 
-    images_count: number;
-    images: I_Image[];
-    in_gallery: boolean;
-    in_most_viral: boolean;
-    include_album_ads: boolean;
-    is_ad: boolean;
-    is_album: boolean;
-    layout: string;
-    link: string;
-    nsfw: boolean;
-    points: number;
-    privacy: string;
-    score: number;
-    section: string;  
+  id: string;
+  ad_type: number;
+  ad_url: string;
+  comment_count: number;
+  cover: string;
+  cover_height: number;
+  cover_width: number; 
+  datetime: number;
+  description: string | null;
+  downs: number; 
+  favorite: boolean
+  favorite_count: number; 
+  images_count: number;
+  images: I_Image[];
+  in_gallery: boolean;
+  in_most_viral: boolean;
+  include_album_ads: boolean;
+  is_ad: boolean;
+  is_album: boolean;
+  layout: string;
+  link: string;
+  nsfw: boolean;
+  points: number;
+  privacy: string;
+  score: number;
+  section: string;  
 
   constructor(args: IPost) {
     this.id = args.id;

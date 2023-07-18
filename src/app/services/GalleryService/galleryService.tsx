@@ -6,8 +6,8 @@ export const getPostsMapper = (x: any): Post => new Post(x);
 
 export class GalleryRepository {
 
-  getPosts = async () => {
-    const res = await api.get(`/3/gallery/hot/viral/day`);
+  getPosts = async (filters: BaseFilters) => {
+    const res = await api.get(`/3/gallery/${filters.section}/${filters.sort}/${filters.page}?showViral=${filters.showViral}`);
     return res.data.data.map(getPostsMapper);
   };
 }

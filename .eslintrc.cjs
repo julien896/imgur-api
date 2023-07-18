@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
+  ignorePatterns: [".eslintrc.cjs", "vite.config.ts"],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -25,18 +26,10 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "warn",
     "indent": ["error", 2],
     "eqeqeq": "error",
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/restrict-template-expressions": ["off"],
     "import/named": ["off"],
     "react-hooks/exhaustive-deps": ["off"],
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "unused-imports/no-unused-imports": "warn",
     '@typescript-eslint/no-non-null-assertion': 'off',
   },
 }
