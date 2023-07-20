@@ -4,9 +4,10 @@ import { GalleryComponent } from '../components/GalleryComponent/GalleryComponen
 import { Masonry } from '@mui/lab'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../lib/slices/gallerySlice'
-import { AppDispatch, GalleryState } from '../lib/store/store';
+import { AppDispatch, RootState } from '../lib/store/store';
 import { BaseFilters } from '../models/Filters';
-import { BaseFiltersComponent } from '../components/GalleryComponent/BaseFilters/BaseFiltersComponent';
+import { Spinner } from '../components/base/Spinner/Spinner';
+import { fetchImage } from '../lib/slices/imageSlice';
 
 export const GalleryPage = () => {
 
@@ -19,8 +20,14 @@ export const GalleryPage = () => {
   })
 
   const dispatch = useDispatch<AppDispatch>();
-  const posts = useSelector((state: GalleryState) => state.gallery.posts);
-  const status = useSelector((state: GalleryState) => state.gallery.status);
+  const posts = useSelector((state: RootState) => state.gallery.posts);
+  const status = useSelector((state: RootState) => state.gallery.status);
+
+  const selectedImage = useSelector((state: RootState) => state.image.data);
+
+  const [imageDialogOpen, setImageDialogOpen] = useState(false)
+
+  const isLoading = status === 'loading'
 
   const dispatchGallery = async() => await dispatch(fetchPosts(filters))
 
@@ -35,17 +42,36 @@ export const GalleryPage = () => {
     }));
   };
 
+  function getExtension(filename: string) {
+    return filename?.split(".").pop();
+  }
+  
+
   return (
     <GalleryComponent>
       <GalleryComponent.Filters handleChange={handleFilterChange} />
+      {!isLoading ?
       <Masonry columns={4} spacing={2}>
         {posts.length > 0 && posts.map((r: Post) => (
           <GalleryComponent.Card 
+            getImage={() => { 
+              dispatch(fetchImage(r.images[0].id)) 
+              setImageDialogOpen(true)
+            }}
             key={r.id} 
             image={r.images && r.images.length > 0 ? r.images[0].link : ''} 
+            getExtension={getExtension}
           />
-        ))}
-      </Masonry>
+        ))} 
+      </Masonry>  :
+      <Spinner />
+    }
+    <GalleryComponent.ImageDialog 
+      open={imageDialogOpen}
+      handleClose={() => setImageDialogOpen(false)}
+      image={selectedImage}
+      getExtension={getExtension}
+    />
     </GalleryComponent>
   )
 }

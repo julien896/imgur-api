@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 @import './variables';
 @import '../app/components/GalleryComponent/BaseFilters/baseFilters.scss';
+@import '../app/components/GalleryComponent/ImageDialog/imageDialog.scss';
+@import '../app/components/base/Spinner/spinner.scss';
 
 :root {
     font-family: 'Mukta', sans-serif;
     line-height: 1.5;
     font-weight: 400;
+    width: 100%;
   
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
@@ -31,7 +34,6 @@
     margin: 0;
     background-color: $primary;
     padding: 0 40px;
-    display: flex;
     place-items: center;
     min-width: 320px;
     min-height: 100vh;

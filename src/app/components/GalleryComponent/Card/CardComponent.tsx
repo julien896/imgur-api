@@ -1,11 +1,18 @@
 import { CardContent, CardMedia, Card as MuiCard, Skeleton } from '@mui/material'
 
-function getExtension(filename: string) {
-  return filename.split(".").pop();
-}
-
-export const CardComponent = ({ image }: { image: string }) => (
-  <MuiCard sx={{ minWidth: '250px' }}>
+export const CardComponent = ({ 
+    image,
+    getImage,
+    getExtension
+  } : { 
+    image: string;
+    getImage: () =>  void;
+    getExtension(filename: string): string | undefined
+  }) => (
+  <MuiCard 
+    sx={{ minWidth: '250px' }}
+    onClick={getImage}
+  >
     {image ? 
       <CardMedia
         component={getExtension(image) === 'mp4' ? 'video' : 'img'}

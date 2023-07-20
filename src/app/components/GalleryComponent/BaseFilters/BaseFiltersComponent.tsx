@@ -8,7 +8,7 @@ export const BaseFiltersComponent = ({
     handleChange: (filterName: keyof BaseFilters, value: string ) => void 
   }) => (
     <div className="base-filters">
-      <FormControl fullWidth>
+      <FormControl fullWidth sx={{ height: '30px'}}>
         <InputLabel id="demo-simple-select-label">Section</InputLabel>
         <Select
           labelId="demo-simple-select-label"

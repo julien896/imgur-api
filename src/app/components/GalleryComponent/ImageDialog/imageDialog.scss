@@ -1,0 +1,10 @@
+.css-ypiqx9-MuiDialogContent-root {
+    padding: 0 !important;
+    overflow-y: hidden !important;
+
+    & .file {
+        width: fit-content;
+        object-fit: cover;
+        height: 400px;
+    }
+}

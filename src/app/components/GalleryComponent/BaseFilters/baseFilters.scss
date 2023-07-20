@@ -5,15 +5,16 @@
     column-gap: 15px;
 
     .MuiSelect-select {
-        background: white;
+        background: rgba(255,255,255,.25);
+        height: 30px;
     }
 
     .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { 
-        color: $fucsia !important
+        color: $fucsia !important;
     }
 
     .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
-        background-color: $fucsia !important
+        background-color: $fucsia !important;
     }
 
     .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
