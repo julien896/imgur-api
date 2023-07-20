@@ -28,6 +28,8 @@ export const GalleryPage = () => {
     dispatchGallery()
   }, [currentParams]);
 
+  console.log(status)
+
   const handleFilterChange = (field: keyof Params, value: string | number | boolean) => {
     dispatch(updateFilters({ [field]: value }))
   };
@@ -46,7 +48,16 @@ export const GalleryPage = () => {
         current={currentParams.page}
       />
       {!isLoading ?
-      <Masonry sx={{ margin: 0, padding: '0 40px', alignContent: 'center'}} columns={4} spacing={2}>
+      <Masonry 
+        sx={{ 
+          margin: 0, 
+          padding: '0 40px', 
+          alignContent: 'center'
+        }} 
+        columns={4} 
+        spacing={2}
+        defaultColumns={4}
+      >
         {posts.length > 0 && posts.map((post: Post) => (
           <GalleryComponent.Card 
             getImage={() => { 

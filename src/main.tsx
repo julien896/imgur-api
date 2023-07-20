@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { ErrorBoundary } from 'react-error-boundary'
@@ -12,10 +12,12 @@ import './styles/index.scss'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Suspense>
     <Provider store={store}> 
       <ErrorBoundary FallbackComponent={Fallback}>
         <App />
       </ErrorBoundary>  
     </Provider>
+    </Suspense>
   </React.StrictMode>,
 )
