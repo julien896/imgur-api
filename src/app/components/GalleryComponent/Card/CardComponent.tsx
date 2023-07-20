@@ -17,6 +17,7 @@ export const CardComponent = ({
       <CardMedia
         component={getExtension(image) === 'mp4' ? 'video' : 'img'}
         loading='lazy'
+        srcSet=''
         image={image}
         alt="Image"
         autoPlay={getExtension(image) === 'mp4'}
