@@ -23,7 +23,9 @@ export interface IPost {
   layout: string;
   link: string;
   nsfw: boolean;
+  title: string;
   points: number;
+  ups: number;
   privacy: string;
   score: number;
   section: string;
@@ -49,7 +51,9 @@ export class Post {
   include_album_ads: boolean;
   is_ad: boolean;
   is_album: boolean;
+  title: string;
   layout: string;
+  ups: number;
   link: string;
   nsfw: boolean;
   points: number;
@@ -77,10 +81,12 @@ export class Post {
     this.include_album_ads= args.include_album_ads;
     this.is_ad= args.is_ad;
     this.is_album= args.is_album;
+    this.title = args.title;
     this.layout= args.layout;
     this.link= args.link;
     this.nsfw= args.nsfw;
     this.points= args.points;
+    this.ups= args.ups;
     this.privacy= args.privacy;
     this.score= args.score;
     this.section= args.section;

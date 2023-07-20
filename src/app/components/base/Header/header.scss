@@ -1,0 +1,16 @@
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 40px;
+    /* background: linear-gradient($blue, $blue-2); */
+    background: $blue;
+    color: white;
+
+    .title {
+        margin: 0;
+        font-size: 35px;
+    }
+}

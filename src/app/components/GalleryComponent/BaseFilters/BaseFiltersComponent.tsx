@@ -3,9 +3,11 @@ import { BaseFilters } from "../../../models/Filters";
 
 
 export const BaseFiltersComponent = ({ 
-    handleChange 
+    handleChange,
+    disabled
   } : { 
-    handleChange: (filterName: keyof BaseFilters, value: string ) => void 
+    handleChange: (filterName: keyof BaseFilters, value: any ) => void;
+    disabled: boolean 
   }) => (
     <div className="base-filters">
       <FormControl fullWidth sx={{ height: '30px'}}>
@@ -14,6 +16,7 @@ export const BaseFiltersComponent = ({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Section"
+          disabled={disabled}
           onChange={(e) => handleChange('section', e.target.value as string)}
         >
           <MenuItem value='hot'>Hot</MenuItem>
@@ -27,10 +30,11 @@ export const BaseFiltersComponent = ({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Sort"
+          disabled={disabled}
           onChange={(e) => handleChange('sort', e.target.value as string)}
         >
           <MenuItem value='viral'>Viral</MenuItem>
-          <MenuItem value='top'>top</MenuItem>
+          <MenuItem value='top'>Top</MenuItem>
           <MenuItem value='time'>Time</MenuItem>
           <MenuItem value='time'>Rising</MenuItem>
         </Select>
@@ -41,6 +45,7 @@ export const BaseFiltersComponent = ({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Window"
+          disabled={disabled}
           onChange={(e) => handleChange('window', e.target.value as string)}
         >
           <MenuItem value='all'>All</MenuItem>
@@ -52,7 +57,12 @@ export const BaseFiltersComponent = ({
       </FormControl>
       <FormControlLabel 
         className="viral-switch"
-        control={<Switch onChange={(e) => handleChange('showViral', e.target.checked.toString())} />} 
+        control={
+          <Switch 
+            onChange={(e) => handleChange('showViral', e.target.checked.toString())} 
+            disabled={disabled}
+          />
+        } 
         label="Show Viral" 
       />
     </div>

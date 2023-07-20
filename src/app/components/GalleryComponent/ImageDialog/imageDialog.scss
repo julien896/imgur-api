@@ -5,6 +5,39 @@
     & .file {
         width: fit-content;
         object-fit: cover;
-        height: 400px;
+        height: 450px;
+    }
+
+    & .post-details {
+        padding: 3px 10px;
+        margin-top: -7px;
+        display: flex;
+        flex-direction: column;
+
+        & .title {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        & .icons {
+            display: flex;
+            align-items: center;
+
+            .MuiSvgIcon-root {
+                font-size: 0.8rem;
+                color: $blue;
+                column-gap: 5px;
+
+                &:hover {
+                    color: $blue-2;
+                }
+            }
+
+            & .points {
+                display: flex;
+                align-items: center;
+                margin-right: 15px;
+            }
+        }
     }
 }

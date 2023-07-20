@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 @import './variables';
 @import '../app/components/GalleryComponent/BaseFilters/baseFilters.scss';
+@import '../app/components/GalleryComponent/Card/card.scss';
 @import '../app/components/GalleryComponent/ImageDialog/imageDialog.scss';
+
+@import '../app/components/base/Header/header.scss';
 @import '../app/components/base/Spinner/spinner.scss';
+@import '../app/components/base/Paginator/paginator.scss';
 
 :root {
     font-family: 'Mukta', sans-serif;
@@ -32,8 +36,8 @@
   
   body {
     margin: 0;
-    background-color: $primary;
-    padding: 0 40px;
+    background-color: $gray-2;
+    padding: 0;
     place-items: center;
     min-width: 320px;
     min-height: 100vh;

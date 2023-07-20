@@ -7,12 +7,13 @@ import { fetchPosts } from '../lib/slices/gallerySlice'
 import { AppDispatch, RootState } from '../lib/store/store';
 import { BaseFilters } from '../models/Filters';
 import { Spinner } from '../components/base/Spinner/Spinner';
-import { fetchImage } from '../lib/slices/imageSlice';
+import { Paginator } from '../components/base/Paginator/Paginator';
+
 
 export const GalleryPage = () => {
 
-  const [filters, setFilters] = useState<BaseFilters>({
-    page: '1',
+  const [params, setParams] = useState<BaseFilters>({
+    page: 1,
     section: 'top',
     sort: 'time',
     window: 'all',
@@ -23,20 +24,20 @@ export const GalleryPage = () => {
   const posts = useSelector((state: RootState) => state.gallery.posts);
   const status = useSelector((state: RootState) => state.gallery.status);
 
-  const selectedImage = useSelector((state: RootState) => state.image.data);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null)
 
   const [imageDialogOpen, setImageDialogOpen] = useState(false)
 
   const isLoading = status === 'loading'
 
-  const dispatchGallery = async() => await dispatch(fetchPosts(filters))
+  const dispatchGallery = async() => await dispatch(fetchPosts(params))
 
   useEffect(() => {
     dispatchGallery()
-  }, [filters]);
+  }, [params]);
 
-  const handleFilterChange = (filterName: keyof BaseFilters, value: string ) => {
-    setFilters((prevFilterValues) => ({
+  const handleFilterChange = (filterName: keyof BaseFilters, value: any ) => {
+    setParams((prevFilterValues) => ({
       ...prevFilterValues,
       [filterName]: value,
     }));
@@ -49,17 +50,24 @@ export const GalleryPage = () => {
 
   return (
     <GalleryComponent>
-      <GalleryComponent.Filters handleChange={handleFilterChange} />
+      <GalleryComponent.Filters disabled={isLoading} handleChange={handleFilterChange} />
+      <Paginator 
+        handlePrev={() => handleFilterChange('page',  params.page - 1)} 
+        handleNext={() => handleFilterChange('page',  params.page + 1)} 
+        disabled={isLoading}
+        current={params.page}
+      />
       {!isLoading ?
-      <Masonry columns={4} spacing={2}>
-        {posts.length > 0 && posts.map((r: Post) => (
+      <Masonry sx={{ margin: 0, padding: '0 40px', alignContent: 'center'}} columns={4} spacing={2}>
+        {posts.length > 0 && posts.map((post: Post) => (
           <GalleryComponent.Card 
             getImage={() => { 
-              dispatch(fetchImage(r.images[0].id)) 
+              setSelectedPost(post)
               setImageDialogOpen(true)
             }}
-            key={r.id} 
-            image={r.images && r.images.length > 0 ? r.images[0].link : ''} 
+            key={post.id} 
+            image={post.images && post.images.length ? post.images[0].link : ''} 
+            description={post.images && post.images.length ? post.images[0].description! : ''}
             getExtension={getExtension}
           />
         ))} 
@@ -69,7 +77,7 @@ export const GalleryPage = () => {
     <GalleryComponent.ImageDialog 
       open={imageDialogOpen}
       handleClose={() => setImageDialogOpen(false)}
-      image={selectedImage}
+      post={selectedPost && selectedPost}
       getExtension={getExtension}
     />
     </GalleryComponent>

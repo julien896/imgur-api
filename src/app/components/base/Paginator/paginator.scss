@@ -1,0 +1,15 @@
+.paginator {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+        padding: 0;
+        color: $primary;
+        border: none;
+        &:hover {
+            color: $fucsia;
+        }
+    }
+}

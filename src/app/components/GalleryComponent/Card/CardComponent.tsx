@@ -2,15 +2,17 @@ import { CardContent, CardMedia, Card as MuiCard, Skeleton } from '@mui/material
 
 export const CardComponent = ({ 
     image,
+    description,
     getImage,
     getExtension
   } : { 
     image: string;
+    description: string;
     getImage: () =>  void;
     getExtension(filename: string): string | undefined
   }) => (
   <MuiCard 
-    sx={{ minWidth: '250px' }}
+    className='card-container'
     onClick={getImage}
   >
     {image ? 
@@ -27,9 +29,11 @@ export const CardComponent = ({
         height={230} 
       />
     }
+    {description && 
     <CardContent>
-        CardContent
+        {description}
     </CardContent>
+    }
   </MuiCard>
 )
 
