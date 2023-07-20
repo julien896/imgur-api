@@ -3,26 +3,18 @@ import { Post } from '../models/Post';
 import { GalleryComponent } from '../components/GalleryComponent/GalleryComponent'
 import { Masonry } from '@mui/lab'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPosts } from '../lib/slices/gallerySlice'
+import { fetchPosts, updateFilters } from '../lib/slices/gallerySlice'
 import { AppDispatch, RootState } from '../lib/store/store';
-import { BaseFilters } from '../models/Filters';
+import { Params } from '../models/Params';
 import { Spinner } from '../components/base/Spinner/Spinner';
 import { Paginator } from '../components/base/Paginator/Paginator';
 
 
 export const GalleryPage = () => {
-
-  const [params, setParams] = useState<BaseFilters>({
-    page: 1,
-    section: 'top',
-    sort: 'time',
-    window: 'all',
-    showViral: false
-  })
-
   const dispatch = useDispatch<AppDispatch>();
-  const posts = useSelector((state: RootState) => state.gallery.posts);
-  const status = useSelector((state: RootState) => state.gallery.status);
+  const posts = useSelector((state: RootState) => state.gallery.posts)
+  const status = useSelector((state: RootState) => state.gallery.status)
+  const currentParams = useSelector((state: RootState) => state.gallery.params)
 
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
 
@@ -30,32 +22,28 @@ export const GalleryPage = () => {
 
   const isLoading = status === 'loading'
 
-  const dispatchGallery = async() => await dispatch(fetchPosts(params))
+  const dispatchGallery = async() => await dispatch(fetchPosts(currentParams))
 
   useEffect(() => {
     dispatchGallery()
-  }, [params]);
+  }, [currentParams]);
 
-  const handleFilterChange = (filterName: keyof BaseFilters, value: any ) => {
-    setParams((prevFilterValues) => ({
-      ...prevFilterValues,
-      [filterName]: value,
-    }));
+  const handleFilterChange = (field: keyof Params, value: string | number | boolean) => {
+    dispatch(updateFilters({ [field]: value }))
   };
 
   function getExtension(filename: string) {
     return filename?.split(".").pop();
   }
   
-
   return (
     <GalleryComponent>
       <GalleryComponent.Filters disabled={isLoading} handleChange={handleFilterChange} />
       <Paginator 
-        handlePrev={() => handleFilterChange('page',  params.page - 1)} 
-        handleNext={() => handleFilterChange('page',  params.page + 1)} 
+        handlePrev={() => handleFilterChange('page',  currentParams.page - 1)} 
+        handleNext={() => handleFilterChange('page',  currentParams.page + 1)} 
         disabled={isLoading}
-        current={params.page}
+        current={currentParams.page}
       />
       {!isLoading ?
       <Masonry sx={{ margin: 0, padding: '0 40px', alignContent: 'center'}} columns={4} spacing={2}>

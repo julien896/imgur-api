@@ -1,17 +1,15 @@
 import { CardContent, CardMedia, Card as MuiCard, Skeleton } from '@mui/material'
+import { CardType } from './CardType'
 
 export const CardComponent = ({ 
     image,
     description,
     getImage,
     getExtension
-  } : { 
-    image: string;
-    description: string;
-    getImage: () =>  void;
-    getExtension(filename: string): string | undefined
-  }) => (
+  } : CardType) => (
+  
   <MuiCard 
+    data-testid="card-container"
     className='card-container'
     onClick={getImage}
   >

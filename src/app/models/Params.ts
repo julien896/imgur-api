@@ -1,4 +1,4 @@
-export interface BaseFilters {
+export interface Params {
     page: number;
     section?: 'hot' | 'top' | 'user';
     sort?: 'viral' | 'top' | 'time' | 'rising' | null;

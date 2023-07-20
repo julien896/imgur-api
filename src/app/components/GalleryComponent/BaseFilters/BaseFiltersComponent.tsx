@@ -1,20 +1,16 @@
 import { FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch } from "@mui/material";
-import { BaseFilters } from "../../../models/Filters";
+import { BaseFiltersType } from "./BaseFiltersType";
 
 
 export const BaseFiltersComponent = ({ 
     handleChange,
     disabled
-  } : { 
-    handleChange: (filterName: keyof BaseFilters, value: any ) => void;
-    disabled: boolean 
-  }) => (
+  } : BaseFiltersType ) => (
     <div className="base-filters">
       <FormControl fullWidth sx={{ height: '30px'}}>
-        <InputLabel id="demo-simple-select-label">Section</InputLabel>
+        <InputLabel id="section-select-label" aria-label="Section">Section</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          aria-labelledby="section-select-label"
           label="Section"
           disabled={disabled}
           onChange={(e) => handleChange('section', e.target.value as string)}
@@ -25,10 +21,9 @@ export const BaseFiltersComponent = ({
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+        <InputLabel id="sort-select-label" aria-label="Sort">Sort</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          aria-labelledby="sort-select-label"
           label="Sort"
           disabled={disabled}
           onChange={(e) => handleChange('sort', e.target.value as string)}
@@ -40,10 +35,9 @@ export const BaseFiltersComponent = ({
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Window</InputLabel>
+        <InputLabel id="window-select-label" aria-label="Window">Window</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          aria-labelledby="window-select-label"
           label="Window"
           disabled={disabled}
           onChange={(e) => handleChange('window', e.target.value as string)}

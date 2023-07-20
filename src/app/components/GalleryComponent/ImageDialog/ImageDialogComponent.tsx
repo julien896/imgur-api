@@ -1,5 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
-import { Post } from '../../../models/Post';
+import { ImageDialogType } from './ImageDialogType';
 
 import { Dialog, DialogContent, Slide } from '@mui/material'
 
@@ -12,13 +11,8 @@ export const ImageDialogComponent = ({
     handleClose,
     post,
     getExtension
-} : {
-    open: boolean;
-    handleClose: Dispatch<SetStateAction<boolean>>;
-    post: Post | any;
-    getExtension(filename: string): string | undefined
-}) => {
-    console.log(post)
+} : ImageDialogType) => {
+
   return (
     <Dialog
       open={open}
@@ -28,13 +22,15 @@ export const ImageDialogComponent = ({
       sx={{ 
         borderRadius: 10, 
         padding: '0px', 
-        overflow: 'hidden'
-    }}
+        overflow: 'hidden',
+      }}
+      data-testid="image-dialog"
     >
     <DialogContent>
-      <div>
+      <div className='file-container'>
         {getExtension(post?.images[0] && post?.images[0].link) === 'mp4' ? (
-          <video className='file' src={post?.images[0].link} muted /> ) : (
+          <video className='file' src={post?.images[0].link} muted /> 
+          ) : (
           <img className='file' src={post?.images[0].link} alt='' />
         )}
       </div>  

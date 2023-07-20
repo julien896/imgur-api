@@ -1,22 +1,37 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction, createAction } from '@reduxjs/toolkit';
 import { GalleryRepository } from '../../services/GalleryService/galleryService';
-import { BaseFilters } from '../../models/Filters';
+import { Params } from '../../models/Params';
 
 const galleryRepository = new GalleryRepository();
 
-export const fetchPosts = createAsyncThunk('gallery/fetchPosts', async (filters: BaseFilters) => {
+export const fetchPosts = createAsyncThunk('gallery/fetchPosts', async (filters: Params) => {
   const posts = await galleryRepository.getPosts(filters);
   return posts;
 });
+
+export const updateFilters = createAction<Partial<Params>>('gallery/updateParams');
+
+const initialParams: Params = {
+  page: 1,
+  section: 'top',
+  sort: 'time',
+  window: 'all',
+  showViral: false,
+};
 
 const gallerySlice = createSlice({
   name: 'gallery',
   initialState: {
     posts: [],
     status: 'idle',
+    params: initialParams,
     error: null as string | null,
   },
-  reducers: {},
+  reducers: {
+    updateParams: (state, action: PayloadAction<Partial<Params>>) => {
+      return { ...state, params: { ...state.params, ...action.payload }};
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -33,4 +48,5 @@ const gallerySlice = createSlice({
   },
 });
 
+export const { updateParams } = gallerySlice.actions;
 export default gallerySlice.reducer;

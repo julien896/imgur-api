@@ -1,16 +1,21 @@
 .MuiDialogContent-root {
     padding: 0 !important;
-    overflow-y: hidden !important;
 
-    & .file {
-        width: fit-content;
-        object-fit: cover;
-        height: 450px;
+    & .file-container {
+        display: flex;
+        justify-content: center;
+
+        & .file {
+            width: fit-content;
+            object-fit: cover;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            height: 400px;
+        }
     }
 
     & .post-details {
         padding: 3px 10px;
-        margin-top: -7px;
         display: flex;
         flex-direction: column;
 
