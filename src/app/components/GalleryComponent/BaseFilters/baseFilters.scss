@@ -9,19 +9,19 @@
         height: 30px;
     }
 
-    .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked { 
+    .Mui-checked { 
         color: $fucsia !important;
     }
 
-    .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+    .Mui-checked+.MuiSwitch-track {
         background-color: $fucsia !important;
     }
 
-    .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+    .MuiFormControlLabel-label {
         color: white;
         font-weight: 500;
     }
-
+    
     .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
         color: $fucsia;
     }
