@@ -1,7 +1,7 @@
 # Image Gallery Web App 
 
 
-## This project is a simple web app that allows browsing the Imgur gallery and consuming the Imgur API (https://api.imgur.com/). Users can view gallery images in a grid of thumbnails, see image descriptions, and select different gallery sections such as hot, top, and user. Additionally, they can filter viral images and specify window and sort parameters. Clicking on an image in the gallery will show its details, including the big image, title, description, upvotes, downvotes, and score.
+This project is a simple web app that allows browsing the Imgur gallery and consuming the Imgur API (https://api.imgur.com/). Users can view gallery images in a grid of thumbnails, see image descriptions, and select different gallery sections such as hot, top, and user. Additionally, they can filter viral images and specify window and sort parameters. Clicking on an image in the gallery will show its details, including the big image, title, description, upvotes, downvotes, and score.
 
 
 
